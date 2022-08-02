@@ -20,7 +20,7 @@ import time
 import grequests
 
 def exception_handler(request, exception):
-    print("Request failed: %s" % exception)
+    print(f"Request failed: {exception}")
 
 
 def callserver():
@@ -28,7 +28,7 @@ def callserver():
 
     rs = (grequests.get(u) for u in urls)
     grequests.map(rs, exception_handler=exception_handler)
-    print("%s request(s) complete to %s" % (c, url))
+    print(f"{c} request(s) complete to {url}")
 
 
 # start loadgen
@@ -45,7 +45,7 @@ if c_str is None:
 c = int(c_str)
 
 now = datetime.datetime.now()
-print("🚀 Starting loadgen: %s" % now)
+print(f"🚀 Starting loadgen: {now}")
 schedule.every(1).seconds.do(callserver)
 
 while 1:
